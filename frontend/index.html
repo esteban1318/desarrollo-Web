@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Residentes</title>
+    <link rel="stylesheet" href="dashboard.css">
+
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="imagenes2/1.png" alt="" id="logo">
+                <p id="textAdmResidentes">Administración de Residentes</p>
+            </div>
+            <div class="search-container">
+                <input type="text" id="busqueda" placeholder="Buscar..." class="search-input" onkeyup="filtrarTabla()">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#"><span class="icon">🏠</span> Inicio</a></li>
+                    <li><a href="#"><span class="icon">👤</span> Residentes</a></li>
+                    <li><a href="#"><span class="icon">🏢</span> Recibos</a></li>
+                    <li><a href="#"><span class="icon">📊</span> Estadísticas</a></li>
+                    <li><a href="#"><span class="icon">⚙️</span> Configuración</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <footer class="sidebar-footer-content">
+                    <a id="cerrarSesion" href="#"><span class="icon">🚪</span> Cerrar Sesión</a>
+                </footer>
+            </div>
+        </div>
+        <div class="main-content">
+            <header class="main-header">
+                <h1 id="textHeader">Dashboard de Residentes</h1>
+                <img class="icono1" src="imagenes2/circuito-cerrado-de-television (1).gif" id="gif" />
+            </header>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Total Residentes</h3>
+                    <p class="stat-number" style="color: rgb(53, 43, 241);">254</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Edificios</h3>
+                    <p class="stat-number" style="color: rgb(53, 43, 241);">8</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Residentes Activos</h3>
+                    <p class="stat-number" style="color: rgb(53, 43, 241);">218</p>
+                </div>
+            </div>
+            <div class="table-container" id="tabla-residentes">
+                <h2>Lista de Residentes</h2>
+                <table id="miTabla" class="residents-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Edificio</th>
+                            <th>Apartamento</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Juan Pérez</td>
+
+                            <td>Torre A</td>
+                            <td>301</td>
+                            <td><span class="estado activo">Activo</span></td>
+                        </tr>
+                        <tr>
+                            <td>María López</td>
+
+                            <td>Torre B</td>
+                            <td>205</td>
+                            <td><span class="estado activo">Activo</span></td>
+                        </tr>
+                        <tr>
+                            <td>Carlos Rodríguez</td>
+
+                            <td>Torre A</td>
+                            <td>102</td>
+                            <td><span class="estado inactivo">Inactivo</span></td>
+                        </tr>
+                        <tr>
+                            <td>Ana Martínez</td>
+
+                            <td>Torre C</td>
+                            <td>401</td>
+                            <td><span class="estado activo">Activo</span></td>
+                        </tr>
+                        <tr>
+                            <td>Luis González</td>
+
+                            <td>Torre B</td>
+                            <td>307</td>
+                            <td><span class="estado activo">Activo</span></td>
+                        </tr>
+                        <tr>
+                            <td>Sofía Torres</td>
+
+                            <td>Torre A</td>
+                            <td>201</td>
+                            <td><span class="estado inactivo">Inactivo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="table-container hidden" id="tabla-recibos">
+        <h2>Lista de Recibos</h2>
+        <table id="miTabla2" class="residents-table">
+            <thead>
+                <tr>
+                    <th>Torre</th>
+                    <th>Apartamento</th>
+                    <th>Medidor</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>101</td>
+                    <td>0000234567</td>
+                    <td>Marval</td>
+                </tr>
+                <tr>
+                    <td>María López</td>
+                    <td>Torre B</td>
+                    <td>$180</td>
+                    <td>18/03/2025</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function filtrarTabla() {
+            let input = document.getElementById("busqueda");
+            let filtro = input.value.toLowerCase();
+            let tabla = document.getElementById("miTabla");
+            let filas = tabla.getElementsByTagName("tr");
+
+            for (let i = 1; i < filas.length; i++) { // Comenzamos en 1 para evitar el encabezado
+                let celdas = filas[i].getElementsByTagName("td");
+                let mostrar = false;
+
+                for (let j = 0; j < celdas.length; j++) {
+                    if (celdas[j].innerText.toLowerCase().includes(filtro)) {
+                        mostrar = true;
+                        break;
+                    }
+                }
+
+                filas[i].style.display = mostrar ? "" : "none";
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuResidentes = document.querySelector(".sidebar-nav li:nth-child(2) a"); // Segundo elemento (Residentes)
+            const menuRecibos = document.querySelector(".sidebar-nav li:nth-child(3) a"); // Tercer elemento (Recibos)
+
+            const tablaResidentes = document.getElementById("tabla-residentes");
+            const tablaRecibos = document.getElementById("tabla-recibos");
+
+            menuRecibos.addEventListener("click", function (event) {
+                event.preventDefault();
+                tablaResidentes.classList.add("hidden");
+                tablaRecibos.classList.remove("hidden");
+            });
+
+            menuResidentes.addEventListener("click", function (event) {
+                event.preventDefault();
+                tablaRecibos.classList.add("hidden");
+                tablaResidentes.classList.remove("hidden");
+            });
+        });
+        function filtrarTabla() {
+            let input = document.getElementById("busqueda");
+            let filtro = input.value.toLowerCase().trim();
+
+            // Detectar qué tabla está visible
+            let tablaResidentes = document.getElementById("tabla-residentes");
+            let tablaRecibos = document.getElementById("tabla-recibos");
+
+            let tabla;
+            if (!tablaResidentes.classList.contains("hidden")) {
+                tabla = document.getElementById("miTabla"); // Residentes
+            } else if (!tablaRecibos.classList.contains("hidden")) {
+                tabla = document.getElementById("miTabla2"); // Recibos
+            }
+
+            if (!tabla) {
+                console.error("No se encontró ninguna tabla visible.");
+                return;
+            }
+
+            let filas = tabla.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+
+            for (let i = 0; i < filas.length; i++) {
+                let celdas = filas[i].getElementsByTagName("td");
+                let mostrar = false;
+
+                for (let j = 0; j < celdas.length; j++) {
+                    let textoCelda = celdas[j].textContent || celdas[j].innerText;
+                    if (textoCelda.toLowerCase().includes(filtro)) {
+                        mostrar = true;
+                        break;
+                    }
+                }
+
+                filas[i].style.display = mostrar ? "" : "none";
+            }
+        }
+
+    </script>
+    <script src="main.js"></script>
+    <script src="login.js"></script>
+</body>
+
+</html>

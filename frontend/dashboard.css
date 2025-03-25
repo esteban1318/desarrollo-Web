@@ -1,0 +1,191 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 80%;
+        /* Menú ocupa el 80% del ancho en móviles */
+        height: 100vh;
+        transform: translateX(-100%);
+        /* Oculto por defecto */
+        position: fixed;
+        z-index: 1000;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+        /* Mostrar menú */
+    }
+
+    .menu-toggle {
+        display: block;
+        /* Se muestra el botón */
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .table-container {
+        max-height: 60vh;
+        /* Ajuste de altura para que no oculte otros elementos */
+    }
+}
+
+.dashboard-container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 200px;
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+}
+
+#logo {
+    width: 90px;
+    margin-left: 50px;
+
+}
+
+.icono1 {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    /* Lo fija en la esquina derecha */
+    width: 50px;
+    /* Ajusta el tamaño según necesites */
+    height: auto;
+    z-index: 1000;
+
+}
+
+.sidebar-header h2 {
+    margin: 0;
+}
+
+.search-container {
+    margin-top: 20px;
+}
+
+.search-input {
+    width: 90%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-nav ul li {
+    padding: 10px;
+    margin: 5px 0;
+
+    border-radius: 5px;
+}
+
+.sidebar-nav ul li a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.icon {}
+
+.sidebar-footer {
+    margin-top: 160px;
+    margin-left: 20%;
+
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+
+}
+
+#textHeader {
+    color: #34495e;
+    text-shadow: 2px 1px 5px;
+    font-style: italic;
+}
+
+.stats-container {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-card {
+    background: #ecf0f1;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    flex: 1;
+}
+
+.table-container {
+    margin-top: 20px;
+}
+
+.residents-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th {
+    background-color: #cdcfd0;
+}
+
+.residents-table th,
+.residents-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.estado.activo {
+    color: green;
+}
+
+.estado.inactivo {
+    color: red;
+}
+
+#cerrarSesion {
+    color: inherit;
+    text-decoration: none;
+}
+
+#textAdmResidentes {
+    font-size: 14px;
+}
+
+.hidden {
+    display: none;
+}
+
+#tabla-recibos {
+    position: absolute;
+    margin-top: 270px;
+    margin-left: 280px;
+    width: 70%;
+}
